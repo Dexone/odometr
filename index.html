@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>odo</title>
+    <style>
+        input {
+            padding: 20px;
+            margin: 5px;
+            width: 140px;
+        }
+
+        td{
+            width: 114px;
+        }
+
+        .et{
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input class="pro" size="26px" placeholder="ODO"><div class="et" size="15px"></div></input>
+        <table border="2">
+           <tr>
+            <td>Годовой</td>
+            <td><div class="bud" size="15px"></div></td>
+          </tr>
+          <td>Нужно</td>
+          <td><div class="nuz" size="15px"></div></td>
+        </tr>
+          </table>
+    <script>
+        document.querySelector(".pro").oninput = myS  //при введении значения в пробег выполняется функция
+        function myS() {
+            var pro = document.querySelector(".pro").value; //получили пробег
+            var probeg = pro - 125400 // столько я проехал со дня покупки
+            var pokupka = 1681992000000 //день покупки в милисекундах
+            var segodna = Date.now()  // сегодняшняя дата в милисекундах
+            var raznica = Math.round((segodna - pokupka) / 86400000) //столько дней прошло с момента покупки (сегодня-день покупки/кол-во милисекунд в сутках)
+            var pereprobeg = Math.round(probeg - (82 * raznica)) // перепробег на данный момент
+            if (pereprobeg <0){
+            var etalon = " " + pereprobeg}// столько должно быть в идеале
+            if (pereprobeg >0){
+            var etalon = " +" + pereprobeg}// столько должно быть в идеале
+            var budetgod = Math.round(probeg / raznica) * 365  // будет годовой пробег
+            var nuzhno = Math.round((15000 - (probeg - (82 * raznica))) / 24) // столько нужно ездить в месяц чтобы привести за пол года в норму (15000 это пол года /6 это кол-во месяцев)
+            document.getElementsByClassName('et')[0].innerHTML = etalon // вносим идеал в инпут
+            document.getElementsByClassName('bud')[0].innerHTML = budetgod //вносим годовой в инпут
+            document.getElementsByClassName('nuz')[0].innerHTML = nuzhno // вносим норму в инпут
+        }
+
+    </script>
+</body>
+
+</html>
