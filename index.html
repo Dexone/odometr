@@ -44,8 +44,13 @@
             <td>
                 <a>37230</a>
             </td>
+        </tr>
+        <td>22.09.2023 - 14.01.2024</td>
+        <td>
+            <a>24090</a>
+        </td>
             </tr>
-            <td>Годовой с 22.09.2023</td>
+            <td>Годовой с 14.01.2024</td>
             <td>
                 <a class="otc"></a>
             </td>
@@ -67,9 +72,9 @@
             let kupBudetgod = Math.round(kupProehal / kupRaznica) * 365  // будет годовой пробег
             document.getElementsByClassName('kup')[0].innerHTML = kupBudetgod //вносим годовой в таблицу
 
-
-            let probeg1 = pro - 141271 // столько я проехал со дня отсчета
-            let otchet = 1695392114000 //день отсчета в милисекундах
+            
+            let probeg1 = pro - 148815 // столько я проехал со дня отсчета
+            let otchet = 1705245722000  //день отсчета в милисекундах
             let otcRaznica = Math.round((segodna - otchet) / 86400000) //столько дней прошло с момента покупки (сегодня-день покупки/кол-во милисекунд в сутках)
             let otcBudetgod = Math.round(probeg1 / otcRaznica) * 365  // будет годовой пробег
             document.getElementsByClassName('otc')[0].innerHTML = otcBudetgod //вносим годовой в таблицу
