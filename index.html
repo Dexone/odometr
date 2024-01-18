@@ -6,78 +6,101 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>odo</title>
+
     <style>
-        main {
-            width: 380px;
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        .lightwindow {
+            border-color: #e0e0e6;
+            border-style: solid;
+            border-width: 1px 1px 0px 1px;
+            width: 335px;
+            height: 65px;
+            padding: 15px;
+            margin-top: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .kup {
+            font-size: 20px;
+        }
+
+        .darkWindow {
+            border-color: #e0e0e6;
+            border-style: solid;
+            border-width: 1px;
+            width: 365px;
+            background-color: #fafafc;
             margin-left: auto;
             margin-right: auto;
         }
 
-        input {
-            width: 371px;
-            height: 30px;
+
+
+        #inp {
+            width: 220px;
+            height: 40px;
+            border-radius: 20px 0px 0px 20px;
+            border-color: #e0e0e6;
+            border-style: solid;
+            border-width: 1px;
+            margin: 20px 0px 20px 20px;
+            font-size: 14px;
         }
 
-        table {
-            width: 380px;
-            border-collapse: collapse;
-        }
-
-        td,
-        tr {
-            width: 400px;
+        #buttAdd {
+            color: #a3a4a6;
+            height: 40px;
+            width: 90px;
+            border-radius: 0px 20px 20px 0px;
+            border-color: #e0e0e6;
+            border-style: solid;
+            border-width: 1px;
+            background-color: #fafafc;
+            text-align: center;
+            font-size: 14px;
         }
     </style>
+
 </head>
 
 <body>
-    <main>
-        <input class="pro" placeholder="ODO">
-        <table border="2">
 
-            <td>Годовой с 20.04.2023</td>
-            <td>
-                <a class="kup"></a>
-            </td>
-            </tr>
-            <td>20.04.2023 - 22.09.2023</td>
-            <td>
-                <a>37230</a>
-            </td>
-        </tr>
-        <td>22.09.2023 - 14.01.2024</td>
-        <td>
-            <a>24090</a>
-        </td>
-            </tr>
-            <td>Годовой с 14.01.2024</td>
-            <td>
-                <a class="otc"></a>
-            </td>
-            </tr>
-        </table>
-    </main>
+    <div class="lightwindow">
+        <div class="otc" size="15px"></div>
+        <div class="kup" size="15px"></div>
+    </div>
+
+
+    <div class="darkWindow">
+        <input id="inp" inputmode="numeric" oninput="alll()" class="pro"><input readonly id="buttAdd"
+            placeholder="км."></input>
+    </div>
+
+
     <script>
         let segodna = Date.now()  // сегодняшняя дата в милисекундах
 
-
-
-
-        document.querySelector(".pro").oninput = function all() {
+        function alll() {
             let pro = document.querySelector(".pro").value; //получили пробег
+
+            let probeg1 = pro - 148815 // столько я проехал со дня отсчета
+            let otchet = 1705245722000  //день отсчета в милисекундах 14 янв 2024
+            let otcRaznica = Math.round((segodna - otchet) / 86400000) //столько дней прошло с момента покупки (сегодня-день покупки/кол-во милисекунд в сутках)
+            let otcBudetgod = Math.round(probeg1 / otcRaznica) * 365  // будет годовой пробег
+            document.getElementsByClassName('otc')[0].innerHTML = otcBudetgod //вносим годовой в таблицу
+
 
             let kupProehal = pro - 125400 // столько я проехал со дня покупки
             let pokupka = 1681992000000 //день покупки в милисекундах
             let kupRaznica = Math.round((segodna - pokupka) / 86400000) //столько дней прошло с момента покупки (сегодня-день покупки/кол-во милисекунд в сутках)
             let kupBudetgod = Math.round(kupProehal / kupRaznica) * 365  // будет годовой пробег
             document.getElementsByClassName('kup')[0].innerHTML = kupBudetgod //вносим годовой в таблицу
-
-            
-            let probeg1 = pro - 148815 // столько я проехал со дня отсчета
-            let otchet = 1705245722000  //день отсчета в милисекундах
-            let otcRaznica = Math.round((segodna - otchet) / 86400000) //столько дней прошло с момента покупки (сегодня-день покупки/кол-во милисекунд в сутках)
-            let otcBudetgod = Math.round(probeg1 / otcRaznica) * 365  // будет годовой пробег
-            document.getElementsByClassName('otc')[0].innerHTML = otcBudetgod //вносим годовой в таблицу
         }
 
     </script>
